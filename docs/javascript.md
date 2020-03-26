@@ -1,0 +1,7 @@
+## Javascript
+
+### `prototype`
+
+### `this`
+
+## TypeScript
