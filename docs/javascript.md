@@ -12,6 +12,7 @@
 
 ### Async & Await
 * [JavaScript: Promises and Why Async/Await Wins the Battle (Jul 2018)](https://dev.to/nickparsons/javascript-promises-and-why-asyncawait-wins-the-battle-1g8a).
+* [Waiting for more than one concurrent await operation (Oct 19)](https://stackoverflow.com/questions/46889290/waiting-for-more-than-one-concurrent-await-operation).
 
 ### Dates
 - [ ] [The definitive guide to JavaScript Dates (Jul 2018)](https://flaviocopes.com/javascript-dates/).
