@@ -17,6 +17,9 @@
 * [SQLite]()
 * [MongoDB]()
 
+## Cache
+* [Why Redis is so fast?](https://zhuanlan.zhihu.com/p/57089960)
+
 ## Networks
 
 See [networks.md](./docs/networks.md) for more detail.
@@ -27,6 +30,8 @@ See [networks.md](./docs/networks.md) for more detail.
 ## Testing
 
 ## Optimize Performance
+
+## Monitoring
 
 ## Concurrency and Multiprocessing
 
