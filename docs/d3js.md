@@ -26,3 +26,7 @@
 * [Mouse position inside autoscaled SVG (Apr 2012)](https://stackoverflow.com/questions/10298658/mouse-position-inside-autoscaled-svg)
 
 ### Demos
+
+
+### Books
+1. [Mastering D3.js (Aug 2014)](https://www.packtpub.com/web-development/mastering-d3js)
