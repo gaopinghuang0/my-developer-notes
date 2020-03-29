@@ -27,3 +27,7 @@
 * Egg example: [Mimic Relative Positioning Inside an SVG with Nested SVGs (Jun 2016)](https://www.sarasoueidan.com/blog/mimic-relative-positioning-in-svg/)
 
 ### Demos
+
+
+### Books
+1. [Mastering D3.js (Aug 2014)](https://www.packtpub.com/web-development/mastering-d3js)
