@@ -16,6 +16,7 @@
 ## Database
 * [SQLite]()
 * [MongoDB]()
+* [ ] Read source code of [leveldb by Jeff Dean](https://github.com/google/leveldb). PS: [A chat about why this is worth reading](https://yq.aliyun.com/articles/241361).
 
 ## Cache
 * [Why Redis is so fast?](https://zhuanlan.zhihu.com/p/57089960)
@@ -26,10 +27,12 @@ See [networks.md](./docs/networks.md) for more detail.
 
 
 ## Security
+- [Meltdown and Spectre](https://spectreattack.com/). Two hardware vulnerabilities
 
 ## Testing
 
 ## Optimize Performance
+* [1万属性，100亿数据，每秒10万吞吐，架构如何设计？ (May 2019)](https://mp.weixin.qq.com/s?__biz=MzI1NDQ3MjQxNA==&mid=2247489011&idx=1&sn=1b99b5801d0cec32d10c288e5bad4397&chksm=e9c5ec42deb265546d67ec2dee678fbd64607a417328b1925ca96bd6d1cf695341df385a5737&scene=21#wechat_redirect)
 
 ## Monitoring
 
