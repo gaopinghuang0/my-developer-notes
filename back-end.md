@@ -33,6 +33,8 @@ See [networks.md](./docs/networks.md) for more detail.
 
 ## Optimize Performance
 * [1万属性，100亿数据，每秒10万吞吐，架构如何设计？ (May 2019)](https://mp.weixin.qq.com/s?__biz=MzI1NDQ3MjQxNA==&mid=2247489011&idx=1&sn=1b99b5801d0cec32d10c288e5bad4397&chksm=e9c5ec42deb265546d67ec2dee678fbd64607a417328b1925ca96bd6d1cf695341df385a5737&scene=21#wechat_redirect)
+* [大家都见过哪些让你虎躯一震的代码？ - BI3OJW的回答 - 知乎](https://www.zhihu.com/question/287421003/answer/528275532). See the second part about optimizing image processing.
+
 
 ## Monitoring
 

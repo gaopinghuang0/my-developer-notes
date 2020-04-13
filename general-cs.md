@@ -23,6 +23,8 @@
   * Video: [Google I/O 2013 - Behind the scenes of Google Maps](https://www.youtube.com/watch?time_continue=2230&v=ybXVRYWqN6s). Talking about some optimization of UX.
   * [ ] [A summary of several links about Google Map Architecture (Oct 2015)](https://massivetechinterview.blogspot.com/2015/10/google-map-architecture.html).
   * [Prototyping a Smoother Map (Aug 2018)](https://medium.com/google-design/google-maps-cb0326d165f5).
+* Elasticsearch
+  * [腾讯万亿级 Elasticsearch 技术解密](https://mp.weixin.qq.com/s/CNf75yT0A0QPki-Qhw3_8w)
 
 ## Operating Systems (OS)
 
