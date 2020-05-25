@@ -23,7 +23,7 @@
 
 ## Networks
 
-See [networks.md](./docs/networks.md) for more detail.
+See [networks.md](./networks.md) for more detail.
 
 
 ## Security

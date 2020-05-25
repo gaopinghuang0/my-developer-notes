@@ -35,4 +35,4 @@
 ## Computer Graphics
 
 ## Networks
-* My collection of [network topics](./docs/networks.md).
+* My collection of [network topics](./networks.md).

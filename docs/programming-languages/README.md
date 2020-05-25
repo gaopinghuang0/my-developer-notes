@@ -1,7 +1,7 @@
 # Programming Languages
 
-1. [JavaScript](./docs/javascript.md)
-2. [Python](./docs/python.md)
+1. [JavaScript](./javascript.md)
+2. [Python](./python.md)
 3. Java
 4. Golang
 5. C#
