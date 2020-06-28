@@ -16,7 +16,7 @@
 
 PS：面试官肯定会深度地问你简历里提到的任何技术，所以不要罗列太多，如果罗列，必须保证足够的深度。
 
-另外一篇文章：如何回答原理题
+另外一篇文章：[如何回答原理题](https://www.zhihu.com/question/64764473/answer/1223383382)
 
 > 回答流程如下：
 > 1. 如果是英文词汇就先翻译成中文
@@ -37,11 +37,12 @@ PS：面试官肯定会深度地问你简历里提到的任何技术，所以不
 
 ## Libraries
 * Node
+  * Monitoring
 * React
 * Flask
   * WSGI
   * Jinja2
-  * SQLAlchemy
+  * SQLAlchemy (?)
   * Flask vs. Django
 * SQLite
 * Nginx
@@ -64,3 +65,5 @@ PS：面试官肯定会深度地问你简历里提到的任何技术，所以不
 * Web Security
 * WebGL (?)
 * V8
+* Tensorflow
+* MQTT (?)

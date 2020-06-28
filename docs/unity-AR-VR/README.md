@@ -2,6 +2,7 @@
 
 ### Basic Tutorials
 * [FPS Microgame](https://learn.unity.com/project/fps-template)
+* VRTK. [Advanced VR Interactions in Unity Tutorial (Mar 2019) by Eric Van de Kerckhove](https://www.raywenderlich.com/2163461-advanced-vr-interactions-in-unity-tutorial)
 
 ### Scriptable Object
 * Video [Unite 2016 - Overthrowing the MonoBehaviour Tyranny in a Glorious Scriptable Object Revolution](https://www.youtube.com/watch?v=6vmRwLYWNRo)

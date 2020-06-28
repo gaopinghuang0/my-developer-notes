@@ -1,6 +1,7 @@
 # Back-end
 
 ## Node.js
+* Monitoring - [Node.js Monitoring Done Right (Nov 2016) by RisingStack](https://medium.com/hackernoon/node-js-monitoring-done-right-70418ecbbff9) gives a list of what we should monitor and why.
 
 ## Backend frameworks
 * [Web.py]() in Python
@@ -11,20 +12,11 @@
 * Bash
 * SSH
 
-## Docker and Container
-
-## Database
-* [SQLite]()
-* [MongoDB]()
-* [ ] Read source code of [leveldb by Jeff Dean](https://github.com/google/leveldb). PS: [A chat about why this is worth reading](https://yq.aliyun.com/articles/241361).
-
 ## Cache
 * [Why Redis is so fast?](https://zhuanlan.zhihu.com/p/57089960)
 
 ## Networks
-
 See [networks.md](./networks.md) for more detail.
-
 
 ## Security
 - [Meltdown and Spectre](https://spectreattack.com/). Two hardware vulnerabilities
@@ -36,9 +28,9 @@ See [networks.md](./networks.md) for more detail.
 * [大家都见过哪些让你虎躯一震的代码？ - BI3OJW的回答 - 知乎](https://www.zhihu.com/question/287421003/answer/528275532). See the second part about optimizing image processing.
 
 
-## Monitoring
+## Docker and Container
 
-## Concurrency and Multiprocessing
+## Monitoring
 
 ## Manage Sign In and Sessions
 
