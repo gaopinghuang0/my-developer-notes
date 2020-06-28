@@ -8,7 +8,7 @@
 ### Promises
 [Promises/A+](https://promisesaplus.com/) is a standard/protocol for compatible JS promises. There are a bunch of promise implementations, such as ES6 native Promises, [kriskowal/Q](https://github.com/kriskowal/q/blob/v1/design/README.md), [petkaantonov/Bluebird](https://github.com/petkaantonov/bluebird), and [then/promises](https://github.com/then/promise/blob/master/src/core.js). These implemetations are quite different.
 * [Are there still reasons to use promise libraries like Q or BlueBird now that we have ES6 promises? (Jan 16)](https://stackoverflow.com/questions/34960886/are-there-still-reasons-to-use-promise-libraries-like-q-or-bluebird-now-that-we/34961040). The main takeaway is that ES6 promises only provide basic functions, and are slower than BlueBird in most environments.
-* Bluebird [optimization killer (Jun 2017)](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) explains its optimization. However, this is no longer correct after Ignition and TurboFan are released. See [front-end/V8 Engine](../front-end.md) for more details.
+* Bluebird [optimization killer (Jun 2017)](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) explains its optimization. However, this is no longer correct after Ignition and TurboFan are released. See [front-end#V8 Engine](./../front-end/README.md) for more details.
 
 ### Async & Await, Event Loop, Microtask
 * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await (Oct 2017)](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)

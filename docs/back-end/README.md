@@ -16,7 +16,7 @@
 * [Why Redis is so fast?](https://zhuanlan.zhihu.com/p/57089960)
 
 ## Networks
-See [networks.md](./networks.md) for more detail.
+See [networks.md](./../general-cs/networks.md) for more detail.
 
 ## Security
 - [Meltdown and Spectre](https://spectreattack.com/). Two hardware vulnerabilities

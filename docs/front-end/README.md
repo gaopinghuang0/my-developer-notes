@@ -3,7 +3,7 @@
 
 
 ## Javascript and TypeScript
-See [javascript.md](./docs/javascript.md) for more detail.
+See [javascript.md](./../programming-languages/javascript.md) for more detail.
 
 ## V8 Engine
 Understand the concepts of hidden class, garbage collection, and so on.
@@ -34,10 +34,10 @@ Check this blog site: https://blog.sessionstack.com/@zlatkov.
 ### 1) A brief history of libraries that I have used.
 * 2014-2017, jQuery was used heavily.
 * 2015-2017, Angular.js. At that time, [MEAN stack](https://thinkster.io/tutorials/mean-stack) was popular, which stands for MongoDB, Express.js, Angular.js, and Node.js.
-* 2016-present, [d3.js](). I listed some [useful resources of using d3.js](./docs/d3js.md).
+* 2016-present, [d3.js](). I listed some [useful resources of using d3.js](./d3js.md).
 * 2018, [three.js]()
 * 2019, [fabric.js]() and [Vue.js]().
-* 2018-present, [React](). State management via [Redux](). I listed some [useful resources of using React-Redux](./docs/react-redux.md).
+* 2018-present, [React](). State management via [Redux](). I listed some [useful resources of using React-Redux](./react-redux.md).
 
 ### 2) Blogs
 * [ ] [How to visually design state in JavaScript](https://www.freecodecamp.org/news/how-to-visually-design-state-in-javascript-3a6a1aadab2b/).
