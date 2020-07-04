@@ -10,7 +10,7 @@ Record what I know and what I don't know yet.  This repo includes the books and 
 6. [Interviews](./docs/Interviews/README.md)
 
 ## Validate relative links in Markdown
-Since this repo has many markdown files, it is easy to leave a wrong relative link after I rename or reorganize another file. So remember to run the following command to validate the links whenever renaming a file. 
+Since this repo has many markdown files, it is difficult to keep relative links consistent after renaming or reorganizing another file. So remember to run the following command to validate the links whenever a file is renamed or moved.
 ```sh
 # Install globally for once
 $ npm install --global remark-cli remark-validate-links
