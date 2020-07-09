@@ -1,0 +1,8 @@
+
+### State Pattern
+* [Game Programming Patterns / State Pattern](https://gameprogrammingpatterns.com/state.html)
+* [State Pattern using Unity (Jan 2020)](https://www.raywenderlich.com/6034380-state-pattern-using-unity). It is very detailed.
+  * *Finite state machine (FSM).* FSM is good for some problems, but it is not good for something more complex like game AI. Because FSM enforces a very constrained structure: a fixed set of states, a single current state, and some hardcoded transitions.
+  * *Concurrent State Machines.* For example, a heroine can have a set of states, such as standing, walking, jumping, ducking, et al. Now if we want the heroine to use a weapon, then we have to double the number of states, such as standing, standing with gun, walking, walking with gun. This is redundant. To avoid creating a state for any pair, we can maintain two FSMs, including motionState and equipment.
+  * *Hierarchical State Machines.* For standing, walking, running, and sliding states, they share some behaviors such as switching to jump by pressing the same button, and switching to duck by pressing another button. In this case, we can create a parent state called `onGroundState` to represent this.
+  * *Pushdown Automata.* The problem of the vanilla FSMs is that they have *no concept of history*. When they switch from one state to another, do some animation, and then switch back. But now there is no clue of the old state. The solution is to use a stack to store states, rather than a single pointer to the current state. Every new state is pushed onto the stack.
