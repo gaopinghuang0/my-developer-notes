@@ -25,14 +25,15 @@
   * Data representation: `index -> type -> mapping -> document -> field`. Roughly, `index` is similar to a MySQL table, while `type` can also be treated as a table (then `index` is a collection of similar tables). `Mapping` is like the schema of a table. `Document` is like a row, while `field` is a column of a row.
   * To support high concurrency, each `index` can have multiple "shards", while each shard stores part of the data.
   * To support high availability, use primary shard and replica shard. This is similar to Kafka.
-* [ElasticSearch工作原理?](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/es-write-query-search.md)
-  * In terms of Read, `hash` the `doc id` and find the proper `shard`. Then use `round-robin` to randomly find a shard between the primary and replica shards. This is load balancing.
+* [ElasticSearch工作原理?](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/es-write-query-search.md). Also this [blog (Apr 2018)](https://ezlippi.com/blog/2018/04/elasticsearch-translog.html) has good diagrams.
+  * In terms of Read, `hash` the `doc id` and find the proper `shard`. Then use `round-robin` to randomly find a shard among the primary and replica shards. This is for load balancing.
   * In terms of Write,
     * First write data to in-memory `buffer` as well as `translog`. For now, the data is not searchable.
     * Every 1s, `refresh` the `buffer` into `os cache`, clear the `buffer`, and create a new `segment file`. Meanwhile, `inverted index` is created. Now, the data is searchable. Due to this 1s lag, ES is called near real time (NRT). `refresh` can also be called manually. 
     * Since each `refresh` will create a `segment file`, there will be many `segment files`. They will be merged into one `segment file` periodically. Note that the `segment file` is in `os cache`, not in disk yet.
     * Every 5s, the `translog` is written to disk. This prevents data loss in `buffer` or `os cache`. In other words, there will be at most 5s' data loss when the data in `translog` has not been saved to disk yet. Such "async" save mode is changed in ES 5.x, in which save-to-disk is done per request by default.
     * Every 30 mins or if the `translog` is too big, the `segment file` in `os cache` will be `flush`/`fsync` into disk, then ES will clear the old `translog` and create a new one. The whole process is called `commit`.
+* Optimization. See the list in [System Design -> ElasticSearch](../general-cs/system-design-architecture.md)
 
 
 ## LevelDB

@@ -2,6 +2,7 @@
 
 ## Node.js
 * Monitoring - [Node.js Monitoring Done Right (Nov 2016) by RisingStack](https://medium.com/hackernoon/node-js-monitoring-done-right-70418ecbbff9) gives a list of what we should monitor and why.
+* Stream. Complete the [`stream-adventure` at NodeSchool](https://nodeschool.io/#workshopper-list).
 
 ## Backend frameworks
 * [Web.py]() in Python

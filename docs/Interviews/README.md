@@ -51,6 +51,7 @@ PS：面试官肯定会深度地问你简历里提到的任何技术，所以不
 * MongoDB
 * Kafka
 * Redis
+  * [Redis 21问，你接得住不？ - 知乎](https://zhuanlan.zhihu.com/p/130923806)
 * ElasticSearch (?)
 * Django (?)
   * Django-admin (?)

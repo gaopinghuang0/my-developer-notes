@@ -3,7 +3,7 @@
 
 
 ## Javascript and TypeScript
-See [javascript.md](./../programming-languages/javascript.md) for more detail.
+See [javascript.md](./../programming-languages/JavaScript/javascript.md) for more detail.
 
 ## V8 Engine
 Understand the concepts of hidden class, garbage collection, and so on.

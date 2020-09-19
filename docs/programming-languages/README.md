@@ -1,6 +1,6 @@
 # Programming Languages
 
-1. [JavaScript](./javascript.md)
+1. [JavaScript](./JavaScript/javascript.md)
 2. [Python](./python.md)
 3. [Java](./java.md)
 4. Golang

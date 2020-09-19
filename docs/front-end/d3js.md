@@ -6,7 +6,7 @@
 * [Developing a D3.js Edge: Chapter 3 The Reusable API (June 2013)](http://backstopmedia.booktype.pro/developing-a-d3js-edge/3b-the-reusable-api/).
 
 ### Timer
-
+* D3-timer [source code](https://github.com/d3/d3-timer/blob/master/src/timer.js).
 
 ### Resampling and simplification
 * [Line Simplification by Mike Bostock (Jun 2012)](https://bost.ocks.org/mike/simplify/). Especially, the source code is worth reading, which implements an efficient way of getting the triangle with the min area after removal each time (by using a stack and triangle).
