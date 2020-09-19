@@ -12,7 +12,8 @@
 
 ### Async & Await, Event Loop, Microtask
 * [How JavaScript works: Event loop and the rise of Async programming + 5 ways to better coding with async/await (Oct 2017)](https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5)
-* Great & interesting video: [SmashingConf London — Jake Archibald on ‘The Event Loop’ (Feb 2018)](https://vimeo.com/254947206)
+* Video (interesting). [What the heck is the event loop anyway? by Philip Roberts (Oct 2014)](https://www.youtube.com/embed/8aGhZQkoFbQ)
+* Video (interesting). [SmashingConf London — Jake Archibald on ‘The Event Loop’ (Feb 2018)](https://vimeo.com/254947206)
 * [JavaScript: Promises and Why Async/Await Wins the Battle (Jul 2018)](https://dev.to/nickparsons/javascript-promises-and-why-asyncawait-wins-the-battle-1g8a).
 * [Waiting for more than one concurrent await operation (Oct 19)](https://stackoverflow.com/questions/46889290/waiting-for-more-than-one-concurrent-await-operation).
 
