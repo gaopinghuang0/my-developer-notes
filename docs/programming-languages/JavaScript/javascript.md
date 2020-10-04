@@ -28,6 +28,35 @@
 
 ### Service Workers
 
+### WeakMap and WeakSet
+WeakMap holds "weak" references to key objects, which means that they do not prevent garbage collection in case there would be no other reference to the key object. This also means the values in the WeakMap can be garbage collected.  
 
+1. WeakMap keys are not enumerable.
+2. WeakMap keys must be of the type `Object` only, while the values can be of any type.
+3. WeakMap has no `size` property, but only `set`, `has`, `delete` methods.
+
+Real use cases:
+1. WeakMap的实际例子：一个graph里的node，记录node被点击的次数和时间。优点是不需要修改node本身，而是把node作为WeakMap的key，然后添加次数和时间等额外信息。如果node从graph里删掉了，这个WeakMap里也会自动删掉。
+2. Hiding implementation details. Code below is from [this blog (2014)](https://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html). Here, only `Public` is exported, so privates are hiden from consumers.
+   ```js
+   const privates = new WeakMap();
+
+   function Public() {
+     const me = {
+       // Private data goes here
+     };
+     privates.set(this, me);
+   }
+
+   Public.prototype.method = function () {
+     const me = privates.get(this);
+     // Do stuff with private data in `me`...
+   };
+
+   module.exports = Public;
+   ```
+
+3. Store custom data for DOM nodes.
+4. Memo/cache for immutable objects. See this [Stack Overflow answer](https://stackoverflow.com/a/46263541)
 
 ## TypeScript

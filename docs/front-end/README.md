@@ -64,7 +64,7 @@ Check this blog site: https://blog.sessionstack.com/@zlatkov.
 
 ## Build Tools
 * 2017-18, [Grunt]() and [browserify]() were used.
-* 2018-present, using [Webpack]() as module bundler
+* 2018-present, using [Webpack](./webpack.md) as module bundler
 
 ## Testing
 * Jest
@@ -83,8 +83,6 @@ Check this blog site: https://blog.sessionstack.com/@zlatkov.
 ## Web Security
 
 ## Animation
-
-## Virtual DOM
 
 ## References
 1. Inspired by [Don’t be a Junior Developer: The Roadmap - June 2018](https://zerotomastery.io/blog/dont-be-a-junior-developer-the-roadmap/?utm_source=medium&utm_medium=dont-be-junior-the-roadmap)
