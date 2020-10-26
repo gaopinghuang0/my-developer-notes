@@ -44,6 +44,30 @@ See [networks.md](./../general-cs/networks.md) for more detail.
 * [大家都见过哪些让你虎躯一震的代码？ - BI3OJW的回答 - 知乎](https://www.zhihu.com/question/287421003/answer/528275532). See the second part about optimizing image processing.
 
 
+## Version Control (Git)
+* [深入理解Git实现原理](https://zhuanlan.zhihu.com/p/45510461)
+   * 使用底层命令 `git hash-object -w file.txt` 往git数据库中写入内容。写入会返回一个40位的 hash (SHA1 key, 例如 "83baae...30"），同时内容会存储成一个 blob 文件，存放成 `.git/objects/83/baae...30`。可以看到，前两位 hash 作为了文件夹名字，后38位作为了文件名称。
+     * 可以使用 `git cat-file -t <hash-key>` 查看类型，并用 `git cat-file -p <hash-key>` 来查看实际内容。
+     * 如果改变了文件的内容，再写入数据库，那么会返回一个新的key，以及存储一个新的blob文件，两个blob文件同时存在。
+     * 注意，此时只保留了文件内容，忽略了很多信息，比如：文件名、变更时间、顺序、变化说明等。
+   * 为了保存文件名和其他有用信息，Git 利用树对象 （tree object）来管理数据（blob）对象。一个树对象包含一条或多条记录，每条记录含有一个指向 blob 或其他树对象的指针，以及相应的模式、类型、文件名。
+     * Git会根据某一时刻的**暂存区**来创建树对象。为了创建树对象，首先要创建一个**暂存区**，保存在 `.git/index`里。一开始，`.git/index` 不存在。
+     * 使用底层命令 `git update-index --add file.txt` 来把 file.txt 的第一个版本放入暂存区。这时`.git/index` 文件被创建。可以使用底层命令 `git ls-files --stage` 来查看暂存区内容。
+     * 使用底层命令 `git write-tree`来把暂存区内容写入一个树对象。跟 blob 类似，这个写入会返回一个40位的key，然后用前两位创建文件夹，后38位当做文件名。此时，区别在于，这个文件的类型是tree，可以使用 `git cat-file -t <hash-key>` 查看类型，并用 `git cat-file -p <hash-key>` 来查看实际内容。
+     * 如果又添加一个新的文件 `new.txt`，直接调用 `git update-index --add new.txt`, 那么文件的内容会自动保存成一个blob对象，如果再调用 `git write-index`, 会创建相应的 tree 对象。**注意，暂存区并没有清空**。使用底层命令 `git ls-files --stage`可以看到，file.txt 和 new.txt 都还在暂存区中。这是因为添加文件是append操作，不会清空暂存区。同样，也意味着，tree对象的内容里包含了file.txt 和 new.txt两个文件。
+     * 对于*文件夹*的操作类似，只不过不能添加空文件夹，而是添加文件夹里的文件。但 tree 对象里会保存文件夹的名称。
+   * 接下来，需要记录下各个版本的时序关系和注释，就能得到功能比较强大的Git了。
+     * Git 使用提交对象（commit object）来记录版本间的时序关系和注释。
+     * 使用底层命令 `git commit-tree <hash-of-tree-object> -m "first commit"` 来将某个树对象提交为 commit 对象。跟常用的`git commit`命令一样，`-m`选项后面就是注释。commit对象的创建同样会返回一个40位的key，规则跟blob和tree几乎一样，因此使用 `git cat-file [-t] [-p] <hash>` 就可以查看类型或内容了。
+     * 此外，可以指定两次提交对象的时序：`git commit-tree <hash-of-tree-object-v2> -p <hash-of-commit-object> -m "second commit"`。这样，第二个树对象就和第一个树对象的提交历史联系起来了，`-p` 指定了父commit。
+   * 最后，因为直接使用 hash 不够方便，所以 Git 提供了引用（references）来简化这个过程。引用保存在 `.git/refs`下。比如我们最常见的`master`就指向当前最新一个提交的hash。类似的，分支（branch）也可以用不同的引用来方便定位。
+   * 当然，还有些很重要的问题这篇文章没有解决，比如，
+     * 怎么压缩文件，保证这些存储的对象不会占用太多空间。尤其是上文中提到每个版本都被 blob 对象完整地记录下来，这样一旦有很多版本，必然会导致相同的信息被重复记录了多次。
+     * 怎么checkout到某个版本。如果不压缩的话，直接就用对应版本的commit对象，找到tree对象，再找到相应的blob对象；但如果压缩了，就需要考虑怎么计算出需要的版本。
+* 关于压缩文件(pack)，可以看一下[这篇文章](https://hiberabyss.github.io/2018/03/28/git-internal/)。
+  * Git会定期或在特定条件下（例如 push 的时候）对对象文件进行打包处理。这时会查找命名及大小相近的文件, 然后保存最新的文件的完整内容, 历史文件则按照 diff 的方式进行保存。同时会删掉无用的对象文件。
+  * 可以使用 `git gc` 来手动触发打包过程。之后，原来的 blob 文件都不存在了，但在 pack 目录里生产了一个 `.idx` 和 `.pack` 文件。
+
 ## Docker and Container
 
 ## Monitoring
