@@ -14,7 +14,8 @@ Since this repo has many markdown files, it is difficult to keep relative links 
 ```sh
 # Install globally for once
 $ npm install --global remark-cli remark-validate-links
-# Only output warnings and errors
+# Only output warnings and errors.
+# Do not miss the dot `.` at the end, which means the current directory.
 $ remark -u validate-links -q .
 ```
 For more details, check [the homepage of the plugin.](https://github.com/remarkjs/remark-validate-links)

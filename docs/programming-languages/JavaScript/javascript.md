@@ -59,4 +59,10 @@ Real use cases:
 3. Store custom data for DOM nodes.
 4. Memo/cache for immutable objects. See this [Stack Overflow answer](https://stackoverflow.com/a/46263541)
 
+### RegExp 正则表达式
+* `?=`正向预查与`?<!`负向后瞻。见[我的文章](https://gaopinghuang0.github.io/2020/10/23/JS-regexp-number-conversion)。
+
+### new, bind, call, apply
+见我自己的文章[JavaScript手写new, call, apply, bind](https://gaopinghuang0.github.io/2020/10/25/JS-my-new-call-apply-bind)
+
 ## TypeScript
