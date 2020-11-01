@@ -26,3 +26,9 @@
       1. Fetch-on-render.  The network request isn't triggered until the component renders. This can lead to a problem known as a "waterfall".
       2. Fetch-then-render.  Use Promise.all to fetch the data outside of App; namely, before App component renders. However, this will make all components wait for the slowest data fetch.
       3. Render-as-you-fetch. `fetchData` outside of App, then use Suspense on each component that needs the data from `fetchData`.
+
+
+## React Fiber
+为什么 React Fiber不用 js 提供的 async/await 和 generator呢？主要原因在于：
+TODO：https://zhuanlan.zhihu.com/p/99977314
+1. 

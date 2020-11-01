@@ -73,6 +73,11 @@ Check this blog site: https://blog.sessionstack.com/@zlatkov.
     console.log(box.offsetHeight);
     box.style.margin = '20px'; 
     ```
+* DevTools
+  * Debug JS sources.
+    * [An overview](https://developers.google.com/web/tools/chrome-devtools/javascript), which is good to read.
+    * [ ] [Different ways of setting breakpoints](https://developers.google.com/web/tools/chrome-devtools/javascript/breakpoints)
+
 
 ## CSS
 * CSS Framework, such as [Bootstrap](https://getbootstrap.com/).

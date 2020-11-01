@@ -28,6 +28,51 @@
 
 ### Service Workers
 
+### Generator, Coroutine
+这篇文章讲了[JS的协程](https://zhuanlan.zhihu.com/p/99977314)，其中提到了 `yield*` 这个关键词。跟`yield`不同之处在于，单纯的`yield` 后面跟的是值，而 `yield*` 后面跟的是另一个迭代器，并且会把迭代器里面的每个值都 `yield` 出来。这样就方便实现递归等应用。比如，
+```js
+function* flatten(arr) {
+  for (const x of arr) {
+    if (Array.isArray(x)) {
+      yield* flatten(x);
+    } else {
+      yield x;
+    }
+  }
+}
+
+console.log([...flatten([1, [2, 3], [[4, 5, 6]]])]);
+```
+上面的代码可以将数组打平，优点在于可以处理无限深度的元素，而不会超过最大递归深度。但是这里不包括循环引用，比如 arr里的元素指向了arr本身，那也会爆栈。
+
+Generator除了产生数据，也可以消费数据。核心是将 `yield` 值付给一个变量。比如
+```js
+function* consumer() {
+  let count = 0;
+  try {
+    while (true) {
+      const x = yield;
+      count += x;
+      console.log("consume:", x);
+    }
+  } finally {
+    console.log("end sum:", count);
+  }
+}
+const co = consumer();
+co.next();  // 这个 next() 调用是为了让函数执行到 yield 为止。
+for (const x of range(1, 5)) {
+  co.next(x);  // 之后的 next() 调用会把值传进 yield.
+}
+co.return();
+```
+还是刚刚那篇文章里提到，这种 Generator 虽然可以实现协程，但是是一种很简单的协程，只能把自己yield 给 caller，拥有比较大的局限性。比如没有办法根据优先级进行调度。
+
+`async/await` 相对来说更灵活。
+
+此外，React.Fiber 是另一种协程的实现方式。在我的[另一篇总结里](../../front-end/react-redux.md)有提到。
+
+
 ### WeakMap and WeakSet
 WeakMap holds "weak" references to key objects, which means that they do not prevent garbage collection in case there would be no other reference to the key object. This also means the values in the WeakMap can be garbage collected.  
 
