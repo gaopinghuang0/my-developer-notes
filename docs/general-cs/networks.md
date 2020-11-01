@@ -39,3 +39,5 @@ CA有自己的公钥和私钥(ca.pub, ca.key)。
 4. 服务器使用私钥解密，得到对称密钥。
 5. 服务器使用该对称密钥加密后续http数据。使用对称密钥加密是因为比非对称加密高效。
 
+### 参考
+[证书链-Digital Certificates (May 2016)](https://www.jianshu.com/p/46e48bc517d0)
