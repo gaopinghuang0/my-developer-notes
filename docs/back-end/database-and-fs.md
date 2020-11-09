@@ -1,5 +1,44 @@
 
 
+## Fundamentals of Database
+* [Stanford CS245: Principles of Data-Intensive Systems](http://web.stanford.edu/class/cs245/)
+  * [Column-Oriented Database Systems (SIGMOD '06)](http://web.stanford.edu/class/cs245/readings/c-store-compression.pdf)
+  * [Query Execution](http://web.stanford.edu/class/cs245/slides/06-Query-Execution.pdf):
+    * Query representation (e.g., SQL). One of our key principles in data intensive systems was declarative APIs: Specify what you want to compute, not how.
+    * Logical query plan (e.g., relational algebra).  Namely, parse SQL into tree and convert into logical query plan.
+      * Relational algebra (RA)
+        * Codd's original RA: tables are sets of tuples (unordered and tuples cannot repeat).
+        * SQL's RA: tables are bags (multisets) of tuples; unordered but each tuple may repeat.
+      * Relational algebra operators
+        * Basic set operators: Intersection (R ∩ S), Union (R ∪ S), Difference (R – S), Cartesian Product (R ⨯ S).
+        * Special query operators:
+          * Selection: σ_condition(R) => { r ∈ R | condition(r) is true }
+          * Projection: PIE_expressions(R) => { expressions(r) | r ∈ R }
+          * Natural Join: R ⨝ S => { (r, s) ∈ R ⨯ S) | r.key = s.key }
+          * Aggregation: keys_G_agg(attr)(R) => SELECT agg(attr) FROM R GROUP BY keys
+    * Optimized logical plan.
+      * Rule-based: apply some rules to replace expressions into other expressions.
+      * Cost-based: propose several execution plans and pick best based on a cost model.
+      * Adaptive: update execution plan at runtime.
+    * Physical plan (i.e., code/operators to run).
+      * Interpretation: per-record exec. Walk through query plan operators for each record.
+        * Simple, but too slow. Lots of virtual function calls and branches for each record.
+        * Transactional database (e.g., MySQL) mostly uses this.
+      * Vectorization: walk through in batches.
+        * +Faster than per-record exec if the query processes many records.
+        * +Relatively simple to implement
+        * -Lots of nulls in batches if query is selective
+        * -Data travels between CPU & cache a lot
+        * Analytical systems (e.g., Vertica, Spark SQL) mostly uses this, sometimes compilation.
+      * Compilation: generate code (like System R).
+        * Potential to get fastest possible execution
+        * Leverage existing work in compilers
+        * Complex to implement
+        * Compilation takes time
+        * Generated code may not match hand-written
+        * ML libs (Tensorflow) mostly vectorization (the records are vectors!), sometimes compilation.
+
+
 ## MySQL
 
 ## SQLite
