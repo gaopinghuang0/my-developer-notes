@@ -3,7 +3,7 @@
 ## Fundamentals of Database
 * [Stanford CS245: Principles of Data-Intensive Systems](http://web.stanford.edu/class/cs245/)
   * [Column-Oriented Database Systems (SIGMOD '06)](http://web.stanford.edu/class/cs245/readings/c-store-compression.pdf)
-  * [Query Execution](http://web.stanford.edu/class/cs245/slides/06-Query-Execution.pdf):
+  * [Query Execution](http://web.stanford.edu/class/cs245/slides/06-Query-Execution.pdf) with four steps:
     * Query representation (e.g., SQL). One of our key principles in data intensive systems was declarative APIs: Specify what you want to compute, not how.
     * Logical query plan (e.g., relational algebra).  Namely, parse SQL into tree and convert into logical query plan.
       * Relational algebra (RA)
@@ -11,6 +11,7 @@
         * SQL's RA: tables are bags (multisets) of tuples; unordered but each tuple may repeat.
       * Relational algebra operators
         * Basic set operators: Intersection (R ∩ S), Union (R ∪ S), Difference (R – S), Cartesian Product (R ⨯ S).
+          * Cartesian Product of two sets is the set of all possible *ordered pairs* (R ⨯ S = {(r,s): r ∈ R and s ∈ S}). Note that r must be before s.
         * Special query operators:
           * Selection: σ_condition(R) => { r ∈ R | condition(r) is true }
           * Projection: PIE_expressions(R) => { expressions(r) | r ∈ R }
@@ -37,9 +38,38 @@
         * Compilation takes time
         * Generated code may not match hand-written
         * ML libs (Tensorflow) mostly vectorization (the records are vectors!), sometimes compilation.
+  * [Query Execution 2 and Query Optimization](http://web.stanford.edu/class/cs245/slides/07-Query-Optimization-p1.pdf)
+    * Common Rule-Based Optimizations
+      * Simplifying relational operator graphs (select, project, join, etc) has the most impact.
+      * Common rules:
+        * push Select as far down as possible so that we can reduce # of records early to minimize work in later ops. For example, if condition p only refers to R, σ_p(R ⨝ S) = σ_p(R) ⨝ S, we can filter R based on p early.
+        * push Projects as far down as possible so that we don't process fields that are not necessary
+        * However, Project rules may backfire. Therefore, need more info to make good decisions, including data statistics and cost models.
+      * Data statistics 
+        * Info about the tuples in a relation that can be used to estimate cost & size. Example：
+          * T(R) = # of tuples in R
+          * S(R) = average size of R's tuples in bytes
+          * B(R) = # of blocks to hold all of R's tuples
+          * V(R, A) = # distinct values of attribute A in R
+          * % of null values for each attribute
+        * W = R1⨯R2 => S(W) = S(R1) + S(R2), T(W) = T(R1) x T(R2)
+        * W = σ_{A=a}(R) => S(W) = S(R), T(W) = T(R) / V(R, A) or T(W) = T(R) / DOM(R, A)
+        * W = σ_{z>=val}(R) => f = fraction of distinct values ≥ val, T(W) = f x T(R)
+        * W = σ_{user_defined_func(z)>=val}(R)  => In postgres db, just T(W) = 1/3 x T(R)
+      * Example: Spark SQL’s Catalyst optimizer with >500 contributors worldwide, >1000 types of expressions, and hundreds of rules
 
 
 ## MySQL
+* [深入理解 MySQL 索引底层原理](https://zhuanlan.zhihu.com/p/113917726)
+  * Hash. 支持单个查找，但是不支持范围查找。
+  * Binary Search Tree. 支持单个查找和范围查找。但极端情况会退化为链表。
+  * AVL 树和红黑树。优点是自平衡，避免了极端情况成为链表。但是数据库查询的瓶颈在于磁盘 IO，如果使用 AVL 树，每个树节点只存储了一个数据，那么比较时就需要一次IO操作。当树很高时，会有很多次 IO 操作，很浪费时间。所以希望树的节点尽可能多地存储数据，然后能在一次磁盘IO里多加载些数据。这就是B树和B+树的优势了。
+  * B树。每个节点现在最多存储 k 个 key，一个节点如果超过 k 个 key 就会自动分裂。
+  * B+树。跟B树的区别在于，B 树一个节点里存的是数据，而 B+ 树存储的是索引（地址），所以 B+ 树的节点里可以放更多索引，进一步减少 IO。而 B+ 树的叶子节点存所有的数据。另外， B+ 树的叶子节点用了一个链表串联起来，便于范围查找。
+  * Innodb 引擎和 MyISAM 引擎。
+    * MyISAM 不支持事务处理。Innodb 最大的特色就是支持了 ACID 兼容的事务功能，而且他支持行级锁。
+    * MyISAM 引擎把数据和索引分开了，一人一个文件，这叫做非聚集索引方式；Innodb 引擎把数据和索引放在同一个文件里了，这叫做聚集索引方式。
+    * MyISAM 的主键和其他字段的索引都指向数据文件里的地址。而Innodb的主键的索引树的叶子节点存储了数据，而其他字段的B+树的叶子节点存的是主键 KEY。这样避免重复保存数据，但也导致了需要查询两次，所以性能比 MyISAM 差点。
 
 ## SQLite
 
