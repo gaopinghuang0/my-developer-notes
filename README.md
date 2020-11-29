@@ -8,6 +8,7 @@ Record what I know and what I don't know yet.  This repo includes the books and 
 4. [Programming Languages](./docs/programming-languages/README.md)
 5. [Unity & AR](./docs/unity-AR-VR/README.md)
 6. [Interviews](./docs/Interviews/README.md)
+7. [Math & Stats](./docs/math-stats/README.md)
 
 ## Validate relative links in Markdown
 Since this repo has many markdown files, it is difficult to keep relative links consistent after renaming or reorganizing another file. So remember to run the following command to validate the links whenever a file is renamed or moved.

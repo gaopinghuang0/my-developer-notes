@@ -4,6 +4,7 @@
 - [Front-end](#front-end)
   - [Javascript and TypeScript](#javascript-and-typescript)
   - [V8 Engine](#v8-engine)
+    - [Garbage collection](#garbage-collection)
   - [Browser (in particular, Chrome)](#browser-in-particular-chrome)
   - [CSS](#css)
   - [Front-end Library and State Management](#front-end-library-and-state-management)
@@ -33,6 +34,20 @@ Understand the concepts of hidden class, garbage collection, and so on.
 * [JavaScript essentials: why you should know how the engine works (July 2018)](https://www.freecodecamp.org/news/javascript-essentials-why-you-should-know-how-the-engine-works-c2cc0d321553/). This blog has clear figures (*.gif).
 * [ ] [JavaScript engine fundamentals: optimizing prototypes (Aug 2018)](https://mathiasbynens.be/notes/prototypes).
 * [The story of a V8 performance cliff in React (Aug 2019)](https://v8.dev/blog/react-cliff). The main issue happens when V8 does not know how the infer the shape of an object after `Object.preventExtensions()`. It will create an *orphaned* shape for each object, which is a problem if there are a lot of objects.
+
+### Garbage collection
+* [Node.js内存管理和V8垃圾回收机制 (Jul 2019)](https://juejin.im/post/6844903878928891911)
+  * 新生代：Scavenge算法，划分成两个相等大小的 from-space 和 to-space。复制对象后互换两个space的名称。
+  * 老生代：Mark-Sweep算法和Mark-Compact算法。
+* 内存泄露的几种类别
+  * 全局变量
+  * 闭包引用。[一个很有趣的闭包内存泄露问题](https://cloud.tencent.com/developer/article/1683960)
+    * 原因：在目前的 V8 实现当中，闭包对象是当前作用域中的所有内部函数作用域共享的，也就是说 theThing.someMethod 和 unUsed 共享同一个闭包的 context，导致 theThing.someMethod 隐式的持有了对之前的 newThing 的引用
+    * 解决方法：引入新的块级作用域。
+  * 事件绑定。没有相应的 removeEventListener.
+  * 用内存做缓存。
+    * 可以用 WeakMap， lru-cache，或 Redis 来避免缓存爆炸
+
 
 ## Browser (in particular, Chrome)
 Check this blog site: https://blog.sessionstack.com/@zlatkov.

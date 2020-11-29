@@ -8,6 +8,10 @@
   * [Apache Kafka - Fundamentals](https://www.tutorialspoint.com/apache_kafka/apache_kafka_fundamentals.htm) gives an abstract description without an example. Not very clear.
   * [Kafka architecture (Mar 2020)](https://data-flair.training/blogs/kafka-architecture/) explains the architecture with slightly more details. Furthermore, [Kafka topics (Feb 2020)](https://data-flair.training/blogs/kafka-topic-architecture/), from the same website, gives a more detailed explanation.
   * [ZooKeeper in Kafka (Feb 2020)](https://data-flair.training/blogs/zookeeper-in-kafka/) - Since brokers are stateless, Kafka uses ZooKeeper to manage and coordiante them. Also, since Kafka partitions have in-sync replicas (ISR), ZooKeeper will elect new leader if the previous leader fails.
+  * [When do the messages published in Kafka get deleted?](https://www.quora.com/When-do-the-messages-published-in-Kafka-get-deleted)
+    * Messages are not deleted when consumed. New messages are appended to the end of the queue (broker). Consumers use offsets to locate messages.
+    * By default, if your topic comes with the default configuration, the data is deleted after a week by Kafka from the receive timestamp.
+    * If your topic is log compacted, the data is kept indefinitely. From time to time Kafka will delete all the messages that share the same key, except the most recent one.
 * [ ] RabbitMQ - 
 * [ ] ZooKeeper
 

@@ -111,3 +111,6 @@ Real use cases:
 见我自己的文章[JavaScript手写new, call, apply, bind](https://gaopinghuang0.github.io/2020/10/25/JS-my-new-call-apply-bind)
 
 ## TypeScript
+
+### Transpile async-await into ES5
+* [Compiling async/await to ES3/ES5 in TypeScript (Dec 2016)](https://mariusschulz.com/blog/compiling-async-await-to-es3-es5-in-typescript)
