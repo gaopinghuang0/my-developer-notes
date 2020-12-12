@@ -42,8 +42,8 @@
     * Common Rule-Based Optimizations
       * Simplifying relational operator graphs (select, project, join, etc) has the most impact.
       * Common rules:
-        * push Select as far down as possible so that we can reduce # of records early to minimize work in later ops. For example, if condition p only refers to R, σ_p(R ⨝ S) = σ_p(R) ⨝ S, we can filter R based on p early.
-        * push Projects as far down as possible so that we don't process fields that are not necessary
+        * Push *Selection* as far down as possible so that we can reduce # of records early to minimize work in later ops. For example, if condition p only refers to R, σ_p(R ⨝ S) = σ_p(R) ⨝ S, we can filter R based on p early.
+        * Push *Projection* as far down as possible so that we don't process fields that are not necessary
         * However, Project rules may backfire. Therefore, need more info to make good decisions, including data statistics and cost models.
       * Data statistics 
         * Info about the tuples in a relation that can be used to estimate cost & size. Example：
@@ -56,7 +56,25 @@
         * W = σ_{A=a}(R) => S(W) = S(R), T(W) = T(R) / V(R, A) or T(W) = T(R) / DOM(R, A)
         * W = σ_{z>=val}(R) => f = fraction of distinct values ≥ val, T(W) = f x T(R)
         * W = σ_{user_defined_func(z)>=val}(R)  => In postgres db, just T(W) = 1/3 x T(R)
-      * Example: Spark SQL’s Catalyst optimizer with >500 contributors worldwide, >1000 types of expressions, and hundreds of rules
+      * Example: Spark SQL’s Catalyst optimizer has >500 contributors worldwide, >1000 types of expressions, and hundreds of rules
+  * [Query Optimization 2](http://web.stanford.edu/class/cs245/slides/08-Query-Optimization-p2.pdf)
+    * Join Operators: join **orders** and **algorithms** are often the choices that affect performance the most.
+    * Common Join Algorithms
+      * Iteration (nested loops) join
+      * Merge join
+      * Index join (Join with index)
+      * Hash join
+    * In general
+      * Index join if an index exists
+      * Merge join if at least one table is sorted
+      * Hash join if both tables unsorted
+    * Spark
+      * RDD: Resilient Distributed Datasets
+      * SQL and data frames are two interfaces for working with structured data.
+      * Based on data frame concept in R and Python, Spark is the first to make this declarative.
+      * ML library takes DataFrames as input/output
+      * Easily convert RDDs ↔ DataFrames
+
 
 
 ## MySQL
