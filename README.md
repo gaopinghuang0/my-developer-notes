@@ -1,15 +1,6 @@
 # my-developer-notes
 Record what I know and what I don't know yet.  This repo includes the books and blog posts that I've read since 2014.
 
-## High-level category
-1. [Front-end](./front-end/README.md)
-2. [Back-end](./back-end/README.md)
-3. [General CS knowledge](./general-cs/README.md)
-4. [Programming Languages](./programming-languages/README.md)
-5. [Unity & AR](./unity-AR-VR/README.md)
-6. [Interviews](./Interviews/README.md)
-7. [Math & Stats](./math-stats/README.md)
-
 ## Validate relative links in Markdown
 Since this repo has many markdown files, it is difficult to keep relative links consistent after renaming or reorganizing another file. So remember to run the following command to validate the links whenever a file is renamed or moved.
 ```sh
