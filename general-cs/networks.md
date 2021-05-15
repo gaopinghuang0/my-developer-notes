@@ -41,3 +41,14 @@ CA有自己的公钥和私钥(ca.pub, ca.key)。
 
 ### 参考
 [证书链-Digital Certificates (May 2016)](https://www.jianshu.com/p/46e48bc517d0)
+
+
+## Network library
+
+1. [Why Network library (e.g., Axios) is needed?](https://dev.to/fleepgeek/when-do-you-need-axios-d)
+   1. Axios can work in Node.js but `fetch()` can only work in browser.
+   2. Axios can use `axios.get()`, `axios.post()`, which is more clear API.
+   3. Axios can cancel a request.
+   4. Axios can show the progress.
+   5. Axios supports token-based support to prevent CSRF.
+   
