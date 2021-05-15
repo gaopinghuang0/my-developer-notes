@@ -11,6 +11,18 @@
   * 但是，需要消耗大量内存来存储页表，所以引入了*多级页表*。它解决了空间上的问题，但这就会导致 CPU 在寻址的过程中，需要有很多层表参与，加大了时间上的开销。于是根据程序的*局部性原理*，在 CPU 芯片中加入了 TLB （Translation Lookaside Buffer），负责缓存最近常被访问的页表项，大大提高了地址的转换速度。
   * 分段和分页是可以结合的。
   * Linux系统主要采用了分页管理。但由于 Intel 处理器的发展史，Linux 系统无法避免分段管理。于是 Linux 就把所有段的基地址设为 0，也就意味着所有程序的地址空间都是线性地址空间（虚拟地址），相当于屏蔽了 CPU 逻辑地址的概念，所以段只被用于访问控制和内存保护。另外，Linxu 系统中虚拟空间分布可分为*用户态*和*内核态*两部分，其中用户态的分布：代码段、全局变量、BSS、函数栈、堆内存、映射区。
+* [Paging and CR3](https://cirosantilli.com/x86-paging).
+
+## Ring0 and Ring3
+* [What are Ring 0 and Ring 3 in the context of operating systems?](https://stackoverflow.com/questions/18717016/what-are-ring-0-and-ring-3-in-the-context-of-operating-systems)
+  * Linux uses Ring 0 for kernel and Ring 3 for users.
+  * Ring 0 can do anything.
+  * Ring 3 cannot do several things:
+    * cannot change its own ring.
+    * cannot modify the page tables (See above about paging). In other words, cannot modify CR3 register to see the memory of other processes.
+    * cannot register interrupt handlers. Handlers need to run in ring 0, so ring 3 cannot register handlers.
+    * cannot do IO instructions like `in` and `out`, and thus have arbitrary hardware accesses.
+
 
 ## Linux 零拷贝Zero-Copy技术
 * [图解|零拷贝Zero-Copy技术大揭秘](https://mp.weixin.qq.com/s?__biz=MzI1MzYzMTI2Ng==&mid=2247485381&idx=1&sn=b2a702abc8e82f6e3b73952db1b6c5a4&chksm=e9d0c988dea7409e5c2188cfbaa207cd255f6156ac12d40e44f2d5ef160ae0beb835f9586ba6&scene=132#wechat_redirect)。里面的图非常精彩，比文字清晰很多。
