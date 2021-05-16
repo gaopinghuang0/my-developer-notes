@@ -9,8 +9,8 @@
     * P-frame contains differences relative to preceding frames.
     * B-frame contains differences relative to both preceding and following frames.
     * GOP (Group of Pictures) is made of I, P, B frames starting with I frame. A typical structure could be IBBPBBPBBI or IBBPBBPBBPBBI. The more frames between I-frames, the longer the GOP.
-    * 帧间预测：运动估计与补偿，算出运动矢量。
-    * 帧内预测：H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。
+    * [帧间预测](https://www.cnblogs.com/DwyaneTalk/p/4021365.html) 和 [这篇](https://www.cnblogs.com/qing1991/p/10085171.html)：运动估计与补偿，算出运动矢量。H.265有merge和AMVP技术。搜索方法有全搜索和TZSearch算法。亚像素估计。
+    * [帧内预测](https://www.jianshu.com/p/12a707cf0d3c)：H264的帧内压缩与JPEG很相似。一幅图像被划分好宏块后，对每个宏块可以进行 9 种模式的预测。找出与原图最接近的一种预测模式。
   * [DCT (Discrete Cosine Transform) 变换](https://blog.51cto.com/u_7335580/2066650)：从空域变换到频域的一个矩阵。左上角的低频系数中（图像变化不多的区域，人眼对低频部分更敏感）部分集中了大量能量，右下角的高频系数（图像变化剧烈的部分或边缘，人眼对高频部分不敏感）集中了很少的能量，处理为这样的结果实际上为后续的量化和Zig-Zag扫描做了很好的铺垫。有损压缩。
     * 离散傅里叶变换需要进行复数运算，尽管有FFT可以提高运算速度，但在图像编码、特别是在实时处理中非常不便。离散傅里叶变换在实际的图像通信系统中很少使用，但它具有理论的指导意义。根据离散傅里叶变换的性质，实偶函数的傅里叶变换只含实的余弦项，因此构造了一种实数域的变换——离散余弦变换(DCT)。这是由于离散余弦变换具有很强的"能量集中"特性:大多数的自然信号(包括声音和图像)的能量都集中在离散余弦变换后的低频部分。
   * [量化(Quantization)](https://blog.51cto.com/u_7335580/2067118)。把前一步的频域矩阵除以一个量化步长，然后取整。这样，很多小的值都取0了，实现进一步压缩。这个量化步长越大，得到的0越多，画质就越低，反之，步长越小画质越高。有损压缩。
@@ -18,7 +18,7 @@
   * [之字扫描（ZigZag扫描）](https://blog.51cto.com/u_7335580/2068407)：二维到一维。经过量化，非零值基本集中在矩阵的左上角，经过ZigZag扫描之后，将二维的矩阵变为一个一维的串以后，最前边的便是非零值，靠后边的便是较多的零值；方便后续的熵编码。
   * 熵编码（Entropy coding），分为CAVLC 压缩和CABAC 压缩，见下文。
 
-* [CAVLC 压缩](https://blog.csdn.net/jubincn/article/details/6948334)：基于上下文的自适应可变长编码。概况来说就是各种查表得到不同的编码。本文含有一个例子。
+* [CAVLC 压缩](https://blog.csdn.net/jubincn/article/details/6948334)：基于上下文的自适应可变长编码。概括来说就是各种查表得到不同的编码。本文含有一个例子。
   * 计算非零系数（TotalCoeffs）和拖尾系数（TrailingOnes）的数目；
   * 通过考虑左边的宏块和上方的宏块来计算出自身的 nC（numberCurrent）
   * 查表获得coff_token的编码
