@@ -4,7 +4,7 @@
   * 离散概率分布
   * 适用于描述单位时间内随机事件发生的次数的概率分布。如某一服务设施在一定时间内受到的服务请求的次数，电话交换机接到呼叫的次数、汽车站台的候客人数、机器出现的故障数、自然灾害发生的次数、DNA序列的变异数、放射性原子核的衰变数、激光的光子数分布等等。
   * 期望和方差都是 λ
-  * <img width="100" alt="typeof-vs-instanceof" style="margin:auto;" src="./poisson.svg">
+  * <img width="100" alt="typeof-vs-instanceof" style="margin:auto;" src="./images/poisson.svg">
   * 极大似然估计（MLE），见下面。
 * 二项分布
   * 伯努利分布是二项分布在n = 1时的特殊情况。
