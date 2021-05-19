@@ -30,7 +30,21 @@
 * [scikit-learn里的高斯混合](https://scikit-learn.org/stable/modules/mixture.html)。
   * 底层实现了EM算法。
   * Gaussian Mixture需要提供 component 的个数，优点是速度最快的。
+
 * 当不提供component个数时，可以用 Variational Bayesian Gaussian Mixture
   * 底层算法依然是EM算法，但基于之前的分布信息来添加正则化。
   * 最重要的参数是`weight_concentration_prior`。当取值小的时候，模型会把大部分权重放在少量的component上；而当取值大的时候，允许更多的component。
-  * [ ] 狄利克雷过程(Dirichlet Process），见[这篇文章](https://zhuanlan.zhihu.com/p/76991275)和[这篇](https://www.zhihu.com/question/26751755)。
+
+* 狄利克雷过程(Dirichlet Process），见[这篇](https://www.zhihu.com/question/26751755)。
+  * Bernoulli process。 重复的独立Bernoulli trials （抛硬币）。假设抛出正面的概率是q。那么抛n次，得到了某个结果（比如k次正面朝上），问q是多少。很显然，因为n是有限的，我们不可能得到一个准确的q值，而只能猜q大致分布在[0,1]中间的哪些值比较合理。所以需要一个工具来描述q的可能的分布。可以写成条件概率密度。
+  * Beta distribution。引入贝叶斯理论，经过一些转换，可以发现，上面的条件概率密度正比于一个beta分布。
+  * 因为共轭(conjugate)，每当我们多抛一次硬币，就可以很容易的更新这个Beta分布。
+  * 如果每次trial的结果不是2种，而是k个可能的结果（比如掷骰子），那么Bernoulli trial就要变成一次trial有k个可能的结果； Bernoulli distribution就变成multinomial distribution。而beta distribution所表述的先验分布，也要改写成一个多结果版本的先验分布。那就是 Dirichlet distribution。
+
+
+## Fisher's Exact Test
+* Example: [The lady tasting tea experiment](https://brainder.org/2015/08/23/the-lady-tasting-tea-and-fishers-exact-test/).
+* Use Fisher's Exact test when one of the expected values (note: not the observed values) in a 2 × 2 contingency table is less than 5, and especially when it is less than 1. This is the case when Chi-square test is not recommended (although Yates’ correction can improve the accuracy).
+* Original paper: *The logic of Inductive Inference by Fisher in 1935*.
+  * Interestingly, the paper includes the comments from several professors in the conference.
+
