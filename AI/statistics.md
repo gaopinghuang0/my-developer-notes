@@ -1,20 +1,33 @@
 
 ## 概率分布
-* [泊松分布](https://en.wikipedia.org/wiki/Poisson_distribution)
-  * 离散概率分布
-  * 适用于描述单位时间内随机事件发生的次数的概率分布。如某一服务设施在一定时间内受到的服务请求的次数，电话交换机接到呼叫的次数、汽车站台的候客人数、机器出现的故障数、自然灾害发生的次数、DNA序列的变异数、放射性原子核的衰变数、激光的光子数分布等等。
-  * 期望和方差都是 λ
-  * <img width="100" alt="typeof-vs-instanceof" style="margin:auto;" src="./images/poisson.svg">
-  * 极大似然估计（MLE），见下面。
-* 二项分布
+* [伯努利分布](https://zhuanlan.zhihu.com/p/24692791)。
+  * 在一次伯努利试验中，事件A出现的概率为p，不出现的概率为q=1-p。问一次试验出现事件的分布是什么。这是最简单的分布。
+  * <img width="130" alt="Bernoulli Distribution" style="margin:auto;" src="./images/bernoulli.svg">
+* [二项分布(Binomial Distribution)](https://zhuanlan.zhihu.com/p/24692791)
+  * 指在只有两个结果的n次独立的伯努利试验中，所期望的结果出现次数为x的概率。
+  *  <img width="130" alt="Binomial Distribution" style="margin:auto;" src="./images/binomial.png">
   * 伯努利分布是二项分布在n = 1时的特殊情况。
   * 当试验的次数趋于无穷大，而乘积np固定时，二项分布收敛于泊松分布。
+  * 需要特别提醒的是：二项分布是建立在**有放回抽样**的基础上的。在实际的工作中通常我们很少会这样抽，一般都属于**无放回抽样**，这时候需要用超几何分布来计算概率。当总数很大而取样数相对很少时，可以近似为有放回抽样。
 * 几何分布
   * 有两种分布，不应该混淆：
     * 在伯努利试验中，得到一次成功所需要的试验次数X。X的值域是{ 1, 2, 3, ... }
     * 在得到第一次成功之前所经历的失败次数Y = X − 1。Y的值域是{ 0, 1, 2, 3, ... }
   * 比如，假设不停地掷骰子，直到得到1。投掷次数是随机分布的，取值范围是无穷集合{ 1, 2, 3, ... }，并且是一个p = 1/6的几何分布。
+* Beta分布，见[这篇](https://www.zhihu.com/question/30269898)和[这篇](https://www.zhihu.com/question/30269898/answer/123261564)
+  * 概率的概率分布。当你不知道一个东西的具体概率是多少时，它可以给出了所有概率出现的可能性大小。
+  * 可以做非常好的先验分布。
+  * 用Beta分布来模拟扔硬币的先验分布之后，通过贝叶斯推断，得到的后验分布依然是Beta分布。这就被称为共轭(conjugate)。每当我们多抛一次硬币，就可以很容易的更新这个Beta分布。
 
+* [泊松分布](https://en.wikipedia.org/wiki/Poisson_distribution)
+  * 离散概率分布
+  * 适用于描述单位时间内随机事件发生的次数的概率分布。如某一服务设施在一定时间内受到的服务请求的次数，电话交换机接到呼叫的次数、汽车站台的候客人数、机器出现的故障数、自然灾害发生的次数、DNA序列的变异数、放射性原子核的衰变数、激光的光子数分布等等。
+  * 期望和方差都是 λ
+  * <img width="100" alt="poisson equation" style="margin:auto;" src="./images/poisson.svg">
+  * 极大似然估计（MLE），见下面。
+* 概率密度函数（probability density function， PDF）
+  * 区间的积分，也就是面积，表示概率
+  * [视频：为什么"概率为0"不等同"不可能"](https://www.bilibili.com/video/BV1ga4y147sC)
 
 ## 极大似然估计（最大似然估计）
 * [维基百科](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1)。L(θ|x1,...,xn) = fθ(x1,...,xn)。对于n个采样x1,...,xn，fθ则为X1，X2,...,Xn联合分布的概率密度函数在观测值处的取值，称为似然函数。对于每个可能的θ，fθ都能得到一个值，目的是在所有可能的θ的取值中找到一个θ使得fθ取到最大值。这个使可能性最大的θ即称为最大似然估计。 里面举了三个例子
@@ -35,10 +48,10 @@
   * 底层算法依然是EM算法，但基于之前的分布信息来添加正则化。
   * 最重要的参数是`weight_concentration_prior`。当取值小的时候，模型会把大部分权重放在少量的component上；而当取值大的时候，允许更多的component。
 
-* 狄利克雷过程(Dirichlet Process），见[这篇](https://www.zhihu.com/question/26751755)。
-  * Bernoulli process。 重复的独立Bernoulli trials （抛硬币）。假设抛出正面的概率是q。那么抛n次，得到了某个结果（比如k次正面朝上），问q是多少。很显然，因为n是有限的，我们不可能得到一个准确的q值，而只能猜q大致分布在[0,1]中间的哪些值比较合理。所以需要一个工具来描述q的可能的分布。可以写成条件概率密度。
+* 狄利克雷过程(Dirichlet Process），见[这篇](https://www.zhihu.com/question/26751755)。为了更容易理解 Dirichlet Process，可以用Beta分布和Bernoulli分布来引入。
+  * Bernoulli process：重复的独立Bernoulli trials （抛硬币）。假设抛出正面的概率是q。那么抛n次，得到了某个结果（比如k次正面朝上），问q是多少。很显然，因为n是有限的，我们不可能得到一个准确的q值，而只能猜q大致分布在[0,1]中间的哪些值比较合理。所以需要一个工具来描述q的可能的分布。可以写成条件概率密度。
   * Beta distribution。引入贝叶斯理论，经过一些转换，可以发现，上面的条件概率密度正比于一个beta分布。
-  * 因为共轭(conjugate)，每当我们多抛一次硬币，就可以很容易的更新这个Beta分布。
+  * 用Beta分布来模拟扔硬币的先验分布之后，通过贝叶斯推断，得到的后验分布依然是Beta分布。这就被称为共轭(conjugate)。每当我们多抛一次硬币，就可以很容易的更新这个Beta分布。更多Beta分布的内容见[这篇](https://www.zhihu.com/question/30269898)。
   * 如果每次trial的结果不是2种，而是k个可能的结果（比如掷骰子），那么Bernoulli trial就要变成一次trial有k个可能的结果； Bernoulli distribution就变成multinomial distribution。而beta distribution所表述的先验分布，也要改写成一个多结果版本的先验分布。那就是 Dirichlet distribution。
 
 
@@ -48,3 +61,10 @@
 * Original paper: *The logic of Inductive Inference by Fisher in 1935*.
   * Interestingly, the paper includes the comments from several professors in the conference.
 
+## 其他
+* [视频：医检阳性≠得了病？重新理解贝叶斯定理](https://www.bilibili.com/video/BV1Ei4y1F72M)
+  * 例子，人群中患某种癌症的概率是1%（先验概率），某种测试的 Sensitivity是90%，即在真患病的人中，90%的概率结果为阳性，也有10%为假阴性。同时，这种测试的 Specificity为91%，即在没有患病的人中，91%的测试结果为阴性，而9%为假阳性。
+  * 如果一个人的检测结果是阳性，其实真正患病的概率只有大约 1/11。即 TP / (TP + FP) 。TP是True Positive的人数， FP为False Positive的人数，不是False Positive Rate。1000个人中，9个为TP，990 * 9% = 89 为FP。
+  * 视频提供了一个很简便的计算真实患病概率的公式，用odds ratio 乘以 “贝叶斯因子”。
+  * 贝叶斯因子 = Sensitivity / False Positive Rate = Sensitivity / (1 - Specificity)，表示了每次测试**更新**了先验的程度。
+  * 把先验概率表达成odds，即1%表达成 1：99；计算贝叶斯因子 90% / 9% = 10；相乘，得到 10 : 99，如果转换回概率，就是 10 / 109 约等于 1/11
