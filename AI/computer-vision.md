@@ -1,5 +1,14 @@
 # Computer Vision
 
+## Introduction to CV
+[Course on Udacity 810](https://classroom.udacity.com/courses/ud810) by Aaron Bobick. The problem sets can be found in the [ CS4495 Spring 2015](https://www.cc.gatech.edu/~afb/classes/CS4495-Spring2015-OMS/) from Georgia Tech.
+* [ ] I have created a Github repo for the problem sets. I have only done the first problem set. Revisit sometime later.
+* [Smoothing and Blurring](https://classroom.udacity.com/courses/ud810/lessons/3490398569/concepts/35009385470923)
+  * To blur an image, we can compute convolution of a Gaussian function with the original image.
+  * Since the Fourier Transform of a convolution is actually the multiplication of individual Fourier Transform, a fat Gaussian that is supposed to blur the image heavily has a Fourier Transform that almost only contains the low-frequency part.
+  * g(x) = f(x) * h(x)  => G(u) = F(u)H(u). Here, * means convolution.
+  * In other words, these two concepts are connected in this way. Fourier Transform explains what happened in the frequency domain while doing convolution.
+
 ## Feature tracking and plane detection
 * [ ] [Good features to track (1993)](https://users.cs.duke.edu/~tomasi/papers/shi/TR_93-1399_Cornell.pdf)
 * [ ] [SIFT (Scale Invariant Feature Transform)](https://link.springer.com/article/10.1023/B:VISI.0000029664.99615.94) 2004 by David G. Lowe.

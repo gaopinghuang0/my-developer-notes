@@ -35,6 +35,7 @@
   * 离散分布，连续参数空间。
   * 连续分布，连续参数空间。
 * [似然性(likelihood)](https://zh.wikipedia.org/wiki/%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0) 和概率 (probability) 意思相近，但不一样。似然性，用于在已知某些观测结果时，对参数进行估计；概率，用于在已知一些参数的情况下，预测接下来的观测结果。在这种意义上，似然函数可以理解为条件概率的逆反。
+* [极大似然估计和EM算法](https://zhuanlan.zhihu.com/p/36331115)。这篇文章在[EM.md](./EM.md)里总结过。
 
 ## EM算法（期望最大化算法）
 见我总结的 [EM算法](./EM.md)
@@ -54,6 +55,22 @@
   * 用Beta分布来模拟扔硬币的先验分布之后，通过贝叶斯推断，得到的后验分布依然是Beta分布。这就被称为共轭(conjugate)。每当我们多抛一次硬币，就可以很容易的更新这个Beta分布。更多Beta分布的内容见[这篇](https://www.zhihu.com/question/30269898)。
   * 如果每次trial的结果不是2种，而是k个可能的结果（比如掷骰子），那么Bernoulli trial就要变成一次trial有k个可能的结果； Bernoulli distribution就变成multinomial distribution。而beta distribution所表述的先验分布，也要改写成一个多结果版本的先验分布。那就是 Dirichlet distribution。
 
+## 联合概率，条件概率，边缘概率
+* [联合概率、边缘概率、条件概率](https://zhuanlan.zhihu.com/p/53005534)
+  * 举了一个扑克牌的例子。
+* [联合概率、边缘概率、条件概率之间的关系&贝叶斯公式](https://blog.csdn.net/tick_tock97/article/details/79885868)
+  * 使用面积作为例子。
+  * 条件联合分布的分解 P(X = a, Y = b|Z = c) = P(X = a|Y = b, Z = c)P(Y = b|Z = c)
+  * 最后的宝箱陷阱的例子，讲解了贝叶斯公式。我发现我基本不了解贝叶斯公式，只知道最基本的形式，不知道怎么利用起来解这个最简单的例子。
+  * "打到怪物就能获得宝箱，但是宝箱有2/3的概率是陷阱，玩家可以通过魔法来检查，但是有1/4的误判概率，问：假设玩家利用魔法判定此宝箱没有陷阱，求宝箱有陷阱的概率"
+    * P(有陷阱) = 2/3
+    * P(没有发现|有陷阱) = 1/4 误判
+    * P(发现了|没有陷阱) = 1/4 误判
+    * 求P(有陷阱|没有发现)
+    * P(有陷阱|没有发现) = P(有陷阱，没有发现) | P(没有发现)
+    * 而 P(没有发现) = P(有陷阱，没有发现) + P(没有陷阱，没有发现) = P(没有发现|有陷阱) * P(有陷阱) + P(没有发现|没有陷阱) * P(没有陷阱) = (1/4) * (2/3) + (3/4) * 1/3 = 5/12
+    * P(有陷阱，没有发现) = P(没有发现|有陷阱) * P(有陷阱) = 1/6
+    * 所以最终结果是 2/5
 
 ## Fisher's Exact Test
 * Example: [The lady tasting tea experiment](https://brainder.org/2015/08/23/the-lady-tasting-tea-and-fishers-exact-test/).
