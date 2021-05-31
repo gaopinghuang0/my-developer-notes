@@ -85,3 +85,11 @@
   * 视频提供了一个很简便的计算真实患病概率的公式，用odds ratio 乘以 “贝叶斯因子”。
   * 贝叶斯因子 = Sensitivity / False Positive Rate = Sensitivity / (1 - Specificity)，表示了每次测试**更新**了先验的程度。
   * 把先验概率表达成odds，即1%表达成 1：99；计算贝叶斯因子 90% / 9% = 10；相乘，得到 10 : 99，如果转换回概率，就是 10 / 109 约等于 1/11
+* 最小二乘法
+  * [最小二乘法 by zhihu Eureka](https://zhuanlan.zhihu.com/p/38128785)
+    * 从矩阵形式到几何解释讲得挺清晰的。
+    * 局限性
+      * 矩阵的逆不一定存在；
+      * 矩阵太大求逆太慢；
+      * 拟合函数必须是线性的。
+  * [scipy.optimize.leastsq的例子](https://blog.csdn.net/sinat_34328764/article/details/85473276)
