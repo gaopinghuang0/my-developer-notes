@@ -8,6 +8,13 @@
   * Since the Fourier Transform of a convolution is actually the multiplication of individual Fourier Transform, a fat Gaussian that is supposed to blur the image heavily has a Fourier Transform that almost only contains the low-frequency part.
   * g(x) = f(x) * h(x)  => G(u) = F(u)H(u). Here, * means convolution.
   * In other words, these two concepts are connected in this way. Fourier Transform explains what happened in the frequency domain while doing convolution.
+* [Projective transformations](https://classroom.udacity.com/courses/ud810/lessons/3011388777/concepts/30117587440923). Lines remain lines.
+  * <img width="400" alt="2d transformation" style="margin:auto;" src="./images/2d-transformation.png">
+  * Translation: [[1, 0, tx], [0, 1, ty], [0, 0, 1]],  2 degree of freedom (DoF)
+  * Euclidean (Rigid body):  translation + rotation. [[cosθ, -sinθ, tx], [sinθ, cosθ, ty], [0, 0, 1]], 3 DoF
+  * Similarity transform:translation + rotate + scale. [[acosθ, -asinθ, tx], [asinθ, acosθ, ty], [0, 0, 1]], 4 DoF. Scale factor: a.
+  * Affine transform: translate + rotate + scale + skew. [[a, b, c], [d, e, f], [0, 0, 1]], 6 DoF. Preserves parallel lines, ratio of areas, lines.
+  * General projective transform (or Homography, 单应性): [[a, b, c], [d, e, f], [g, h, i]]. Lines near you may seem longer than lines far away. It seems that 9 DoF. However, since we are using homogenous coordinates, we will divide the `w` anyway. So, we can simplify the matrix as [[a, b, c], [d, e, f], [g, h, 1]], which has 8 DoF. Note that the last DoF is 1, instead of i.
 
 ## Feature tracking and plane detection
 * [ ] [Good features to track (1993)](https://users.cs.duke.edu/~tomasi/papers/shi/TR_93-1399_Cornell.pdf)
