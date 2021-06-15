@@ -8,6 +8,13 @@
   * Since the Fourier Transform of a convolution is actually the multiplication of individual Fourier Transform, a fat Gaussian that is supposed to blur the image heavily has a Fourier Transform that almost only contains the low-frequency part.
   * g(x) = f(x) * h(x)  => G(u) = F(u)H(u). Here, * means convolution.
   * In other words, these two concepts are connected in this way. Fourier Transform explains what happened in the frequency domain while doing convolution.
+* [Projective transformations](https://classroom.udacity.com/courses/ud810/lessons/3011388777/concepts/30117587440923). Lines remain lines.
+  * <img width="400" alt="2d transformation" style="margin:auto;" src="./images/2d-transformation.png">
+  * Translation: [[1, 0, tx], [0, 1, ty], [0, 0, 1]],  2 degree of freedom (DoF)
+  * Euclidean (Rigid body):  translation + rotation. [[cosθ, -sinθ, tx], [sinθ, cosθ, ty], [0, 0, 1]], 3 DoF
+  * Similarity transform:translation + rotate + scale. [[acosθ, -asinθ, tx], [asinθ, acosθ, ty], [0, 0, 1]], 4 DoF. Scale factor: a.
+  * Affine transform: translate + rotate + scale + skew. [[a, b, c], [d, e, f], [0, 0, 1]], 6 DoF. Preserves parallel lines, ratio of areas, lines.
+  * General projective transform (or Homography, 单应性): [[a, b, c], [d, e, f], [g, h, i]]. Lines near you may seem longer than lines far away. It seems that 9 DoF. However, since we are using homogenous coordinates, we will divide the `w` anyway. So, we can simplify the matrix as [[a, b, c], [d, e, f], [g, h, 1]], which has 8 DoF. Note that the last DoF is 1, instead of i.
 * [Essential Matrix](https://classroom.udacity.com/courses/ud810/lessons/3066558680/concepts/30714287020923)
   * For two calibrated cameras, suppose we know the translation (T) and rotation (R) to transform the camera center to another, also we know two points on each image plane (X and X'), then we have: transpose(X')EX = 0. Here, E = [Tx]R = T x R, which is called *essential matrix*. Note that the cross product is written as a matrix multiplication, denoted as [Tx]. This is because a x b = [[0, -a3, a2], [a3, 0, -a1], [-a2, a1, 0]][b1,b2,b3] = [ax]b.
   * Side note: If we see something in the form of inverse(A)MA, it normally means we are translating a coordinate in a different coordinate system. See this video as well: [线性代数的本质 - 09 - 基变换](https://www.bilibili.com/video/BV1Ls411b7r2/?spm_id_from=333.788.recommend_more_video.-1)
