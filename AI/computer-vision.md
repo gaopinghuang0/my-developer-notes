@@ -8,6 +8,9 @@
   * Since the Fourier Transform of a convolution is actually the multiplication of individual Fourier Transform, a fat Gaussian that is supposed to blur the image heavily has a Fourier Transform that almost only contains the low-frequency part.
   * g(x) = f(x) * h(x)  => G(u) = F(u)H(u). Here, * means convolution.
   * In other words, these two concepts are connected in this way. Fourier Transform explains what happened in the frequency domain while doing convolution.
+* [Essential Matrix](https://classroom.udacity.com/courses/ud810/lessons/3066558680/concepts/30714287020923)
+  * For two calibrated cameras, suppose we know the translation (T) and rotation (R) to transform the camera center to another, also we know two points on each image plane (X and X'), then we have: transpose(X')EX = 0. Here, E = [Tx]R = T x R, which is called *essential matrix*. Note that the cross product is written as a matrix multiplication, denoted as [Tx]. This is because a x b = [[0, -a3, a2], [a3, 0, -a1], [-a2, a1, 0]][b1,b2,b3] = [ax]b.
+  * Side note: If we see something in the form of inverse(A)MA, it normally means we are translating a coordinate in a different coordinate system. See this video as well: [线性代数的本质 - 09 - 基变换](https://www.bilibili.com/video/BV1Ls411b7r2/?spm_id_from=333.788.recommend_more_video.-1)
 
 ## Feature tracking and plane detection
 * [ ] [Good features to track (1993)](https://users.cs.duke.edu/~tomasi/papers/shi/TR_93-1399_Cornell.pdf)
