@@ -18,6 +18,39 @@
 * [Essential Matrix](https://classroom.udacity.com/courses/ud810/lessons/3066558680/concepts/30714287020923)
   * For two calibrated cameras, suppose we know the translation (T) and rotation (R) to transform the camera center to another, also we know two points on each image plane (X and X'), then we have: transpose(X')EX = 0. Here, E = [Tx]R = T x R, which is called *essential matrix*. Note that the cross product is written as a matrix multiplication, denoted as [Tx]. This is because a x b = [[0, -a3, a2], [a3, 0, -a1], [-a2, a1, 0]][b1,b2,b3] = [ax]b.
   * Side note: If we see something in the form of inverse(A)MA, it normally means we are translating a coordinate in a different coordinate system. See this video as well: [线性代数的本质 - 09 - 基变换](https://www.bilibili.com/video/BV1Ls411b7r2/?spm_id_from=333.788.recommend_more_video.-1)
+* [Fundamental Matrix](https://classroom.udacity.com/courses/ud810/lessons/3093918667/concepts/30748886490923), for uncalibrated cameras.
+  * transpose(P)FP' = 0, in which F is the fundamental matrix and P/P' are the points in two frames.
+* Feature points
+  * [Harris corners](https://classroom.udacity.com/courses/ud810/lessons/3168178614/concepts/31712686140923)
+    * Second-order Taylor expansion.
+    * Second moment matrix (M). Compute the derivative around each pixel within a small patch.
+    * Detect corners. It could be solving the eigenvalues of the matrix above (λ1 and λ2). If both are large, then the pixel is a corner. If only one is large, then it is an edge. However, solving the eigenvalues is expensive. There is an approximation function: [Harris Corner Response Function](https://classroom.udacity.com/courses/ud810/lessons/3168178614/concepts/31712686170923).
+    * R = det(M) - α * trace(M)^2 = λ1λ2 - α(λ1+λ2)^2, in which α is a constant (0.04 to 0.06)
+    * R is large for a corner.
+  * [Scale invariant](https://classroom.udacity.com/courses/ud810/lessons/3171708614/concepts/31807086020923)
+    * When an image is scaled, an initial corner may seem like an edge given the original window size.
+    * We need to try different scale factor.
+    * The goal is to find a good function that can tell us which scale is the right one.
+    * We use Laplacian of Gaussian in which the value will be maximum around a proper scale, while it will be small for small or large scale.
+    * A trick: compute Difference of Gaussian (DoG), which is much faster than Laplacian of Gaussian. DoG = G(x, y, kσ) - G(x, y, σ)
+  * SIFT descriptors to describe a feature point distinctively and robust.
+    * Main idea: find orientation and build description based on the orientation.
+    * Pick a small region around the feature point (x, y) at selected scale. (Note, the scale is determined earlier.)
+    * To find the orientation: create histogram of local gradient directions in 36 bins.  Pick the dominant direction as the orientation. This orientation becomes the north of the region.
+    * Normalization: rotate the region to standard orientation; scale the region based on the scale at which the feature was found.
+    * The above process ensures that the descriptor is invariant to x, y, scale, and orientation.
+    * Consider the region around the feature point, say 8x8 pixels.
+    * Compute the gradient for each pixel, weighted by Gaussian. The pixel near the center has bigger weight.
+    * Pick a smaller window (e.g., 4x4) and compute a histogram in 8 bins (angles).
+    * We can slide the window around the entire region. (The slide process is similar to what we did in Convolution). For example, we can get 4x4 windows, namely, 4x4 histograms.
+    * Concat all values into a long vector (e.g., 4x4x8 = 128 values)
+  * RANSAC. RANdom SAmple Consensus for feature point matching.
+    * Propose a model.
+    * Randomly pick some points to fit a model.
+    * Count how many points after applying the computed model (transform) are "inliers" and "outliers".
+    * Repeat until we find a good model.
+    * The key idea is that the number of times to repeat is not very big, if we pick less than 10 points as a sample. 10 points are enough for Homography (4 points) and fundamental matrix (8 points).
+
 
 ## Feature tracking and plane detection
 * [ ] [Good features to track (1993)](https://users.cs.duke.edu/~tomasi/papers/shi/TR_93-1399_Cornell.pdf)
