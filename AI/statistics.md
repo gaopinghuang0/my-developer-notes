@@ -93,3 +93,9 @@
       * 矩阵太大求逆太慢；
       * 拟合函数必须是线性的。
   * [scipy.optimize.leastsq的例子](https://blog.csdn.net/sinat_34328764/article/details/85473276)
+  * [奇异值分解（SVD）方法求解最小二乘问题]https://blog.csdn.net/qq_35987777/article/details/109557291
+    * A=UD transpose(V)
+    * 其中，U和V为半酉阵，分别满足
+    * trans(U) U=I, V trans(V)=I
+    * 通过一系列变换，可以取V矩阵的最后一列作为x。这是因为在奇异值分解中D的对角线元素是递减排列的，最小的元素对应的就是最后的一列。
+    * 另外，SVD也是PCA的主要方法。因为可以忽略掉D中非常小的值，然后取U和V中剩下的行和列。
