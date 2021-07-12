@@ -2,7 +2,6 @@
 
 ## Introduction to CV
 [Course on Udacity 810](https://classroom.udacity.com/courses/ud810) by Aaron Bobick. The problem sets can be found in the [ CS4495 Spring 2015](https://www.cc.gatech.edu/~afb/classes/CS4495-Spring2015-OMS/) from Georgia Tech.
-* [ ] I have created a Github repo for the problem sets. I have only done the first problem set. Revisit sometime later.
 * [Smoothing and Blurring](https://classroom.udacity.com/courses/ud810/lessons/3490398569/concepts/35009385470923)
   * To blur an image, we can compute convolution of a Gaussian function with the original image.
   * Since the Fourier Transform of a convolution is actually the multiplication of individual Fourier Transform, a fat Gaussian that is supposed to blur the image heavily has a Fourier Transform that almost only contains the low-frequency part.
